@@ -162,7 +162,6 @@ public class EhcacheSearchPlaying {
         .getAggregatorResults());
     cacheManager.shutdown();
 
-    cacheManager.shutdown();
   }
 
   private void loadCache() {
