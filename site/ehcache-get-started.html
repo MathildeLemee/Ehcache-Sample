@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=1100,user-scalable=yes"/>
+    <title>Ehcache | Documentation | Documentation : Ehcache get started</title>
+
+    <link rel="stylesheet" href="http://ehcache.org/ui/stylesheets/core.min.css?2012-08-16-11-14"/>
+    <link rel="stylesheet" href="http://ehcache.org/stylesheets/ehcache.css?2012-08-16-11-14"/>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+    <script src="http://ehcache.org/ui/javascripts/application.min.js?2012-08-16-11-14"></script>
+
+    <!--[if (gte IE 5.5)&(lte IE 8)]>
+    <script type="text/javascript" src="http://ehcache.org/ui/javascripts/selectivizr.js?2012-08-16-11-14"></script>
+    <![endif]-->
+
+    <style>
+        .blue { color: #009 }
+        .red { color: #900}
+        .magenta { color: #C0C}
+    </style>
+</head>
+<body id="introduction-page"
+      class="ehcache-site introduction-page documentation-controller documentation-controller_introduction-page chrome chrome21 mac">
+<div class="documentation-content" style="margin:20px">
+
+    <h1 id="hello-ehcache">Getting started with Ehcache</h1>
+
+    Last release of Ehcache is 2.6.0. <a href="http://terracotta.org/confluence/display/release/Ehcache+2.6.0+Release+Notes">Release notes.</a><br/>
+    <br/>
+
+    <h2>What is Ehcache?</h2>
+    Ehcache is a distributed in-memory cache solution, aimed at scalability.<br/>
+    The key goal is to improve performance by storing data in memory so that subsequential access to this data will be faster.<br/>
+    By allowing the use of terabytes of memory, it is able to cache and replicate large amount of data with a low latency.<br/>
+    <br/>
+
+    <h2>Where do I get it?</h2>
+    You can download the distribution <a href="http://ehcache.org/downloads">here</a>.<br/>
+    <br/>
+
+    <h2>How do I use it?</h2>
+    <p style="margin: 10px; font-family: monospace">
+        import <span class="magenta">net.sf.ehcache.*</span>;<br/>
+        <br/>
+        <span class="red">// Create the cache manager and add a cache to it</span><br/>
+        CacheManager cacheManager = CacheManager.create();<br/>
+        cacheManager.addCache(<span class="blue">"myCache"</span>);<br/>
+        Cache cache = manager.getCache(<span class="blue">"myCache"</span>);<br/>
+        <br/>
+        <span class="red">// Put an <Key, Value> Element in the cache</span><br/>
+        cache.put(new Element(<span class="blue">"key"</span>, <span class="blue">"value"</span>);<br/>
+        <br/>
+        <span class="red">// Get the Value for the Key in the cache</span><br/>
+        Element element = cache.get(<span class="blue">"key"</span>);<br/>
+        System.out.println(element.getValue());<br/>
+        <br/>
+        <span class="red">// Delete the Element from the cache</span><br/>
+        cache.remove(<span class="blue">"key"</span>);<br/>
+        <br/>
+        <span class="red">// Shutdown the cachemanager</span><br/>
+        cacheManager.shutdown();<br/>
+    </p>
+    <br/>
+    <h2>Enable BigMemory and unleash the power</h2>
+    Garbage Collection is the reason <a href="http://terracotta.org/products/bigmemory/how-it-helps">why most applications can't scale</a>.<br/>
+    BigMemory allows Ehcache to use Terabytes of memory <strong>without</strong> having Garbage Collection problems.<br/>
+    And it is very easy to enable it when using Ehcache.<br/>
+    <p style="margin: 10px; font-family: monospace">
+        import <span class="magenta">net.sf.ehcache.*</span>;<br/>
+        <br/>
+        <span class="red">// Create the cache manager and add a cache with 10 Gigabytes of BigMemory</span><br/>
+        Configuration configuration = new Configuration()<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;.cache(new CacheConfiguration().name(<span class="blue">"bigCache"</span>)<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.maxBytesLocalOffHeap(10, MemoryUnit.GIGABYTES)<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+        <br/>
+        CacheManager cacheManager = CacheManager.create(configuration);<br/>
+        Cache cache = manager.getCache(<span class="blue">"bigCache"</span>);<br/>
+        <br/>
+    </p>
+    <br/>
+    Click here for more information on <a href="http://ehcache.org/documentation/get-started/introduction">Ehcache</a>,
+    <a href="http://terracotta.org/products/bigmemory">BigMemory</a>, and <a href="http://ehcache.org/documentation/code-samples">code samples</a>.<br/>
+    <br/>
+    And please note that you can easily cluster your cache and scale it even further by <a href="http://terracotta.org/products/enterprise-suite">using Ehcache with Terracotta</a>.<br/>
+    <br/>
+    <br/>
+
+</div>
+</body>
+</html>
